@@ -1,5 +1,10 @@
 #![cfg(target_os = "android")]
 
+#![allow(unused_variables)]
+#![allow(improper_ctypes)]
+
+extern crate libc;
+
 extern {
     fn cargo_apk_injected_glue_get_native_window() -> *const c_void;
     fn cargo_apk_injected_glue_add_sender(sender: *mut ());
@@ -7,6 +12,8 @@ extern {
     fn cargo_apk_injected_glue_set_multitouch(multitouch: bool);
     fn cargo_apk_injected_glue_write_log(ptr: *const (), len: usize);
 }
+
+pub mod ffi;
 
 use std::mem;
 use std::os::raw::c_void;
